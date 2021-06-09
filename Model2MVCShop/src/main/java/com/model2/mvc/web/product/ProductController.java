@@ -45,13 +45,16 @@ public class ProductController {
 	//@RequestMapping("/addProduct.do")
 	@RequestMapping("/addProduct")
 	public String addProduct(@ModelAttribute("product") Product product, MultipartFile file,
-													Model model) throws Exception {
+												HttpServletRequest request,Model model) throws Exception {
 		
 		System.out.println("addProduct");
 		
 		String originalFilename = file.getOriginalFilename();
 		
-		file.transferTo(new File("C:\\workspace\\Model2MVCShop\\src\\main\\webapp\\images\\uploadFiles\\"+originalFilename));
+//		request.getServletContext().getRealPath("/images/uploadFiles"+"/"+originalFilename);
+		
+//		file.transferTo(new File("C:\\workspace\\Model2MVCShop\\src\\main\\webapp\\images\\uploadFiles\\"+originalFilename));
+		file.transferTo(new File(request.getServletContext().getRealPath("/images/uploadFiles"+"/"+originalFilename)));
 		
 		product.setFileName(originalFilename);
 		
@@ -133,13 +136,13 @@ public class ProductController {
 	
 	@RequestMapping(value="updateProduct")
 	public String updateProduct(@ModelAttribute("product") Product product, MultipartFile file, 
-								Model model) throws Exception {
+								HttpServletRequest request,Model model) throws Exception {
 		
 		System.out.println("/updateProduct");
 		
 		String originalFilename = file.getOriginalFilename();
 		
-		file.transferTo(new File("C:\\workspace\\Model2MVCShop\\src\\main\\webapp\\images\\uploadFiles\\"+originalFilename));
+		file.transferTo(new File(request.getServletContext().getRealPath("/images/uploadFiles"+"/"+originalFilename)));
 		
 		product.setFileName(originalFilename);
 		
