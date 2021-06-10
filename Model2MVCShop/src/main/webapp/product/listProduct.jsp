@@ -40,6 +40,7 @@
 									"Content-Type" : "application/json"
 								},
 								success : function(JSONData , status) {
+									//alert(JSONData.fileName);
 									var displayValue = "<img src =/images/uploadFiles/"+JSONData.fileName+" alt=사진없음>";
 									
 									$( "#"+prodNo+"" ).html(displayValue);
